@@ -1,7 +1,6 @@
-markdown
 # Reminder System
 
-**Ein Node.js-Projekt mit einer Verwaltungsseite für Dienste und Reminder-Nachrichten, das selbst gehostet werden kann.**
+**Ein Node.js-Projekt mit einer Verwaltungsseite für Dienste und Discord Reminder-Nachrichten, das selbst gehostet werden kann.**
 
 ## Inhaltsverzeichnis
 
@@ -36,14 +35,19 @@ Gehe in den page-Unterordner und erstelle die .env-Datei mit folgendem Inhalt:
 
 a. .env für die Page
 ```
-PORT=3000
-DATABASE\_URI=mongodb://your\_database\_uri
+MONGO_URI=mongodb://MONGODB-IP:PORT/verwaltung
+LOGIN_PASSWORD=IHR_PASSWORT
+SESSION_SECRET=IHR_SECRET
 ```
 Gehe in den Discord-Unterordner und erstelle die .env-Datei mit folgendem Inhalt:
+
 b. .env für den Discord-Bot
 ```
-PORT=3000
-DATABASE\_URI=mongodb://your\_database\_uri
+MONGO_URI=mongodb://MONGODB-IP:PORT/verwaltung
+BOT_TOKEN=IHR_BOT_TOKEN
+GUILD_ID=IHRE_SERVER_ID
+CLIENT_ID=IHRE_CLIENT_ID
+REMINDER_CHANNEL_ID=IHR_CHANNEL_FÜR_REMINDER
 ```
 ### 2. Manuelles Starten
 a. Verwaltungsseite
