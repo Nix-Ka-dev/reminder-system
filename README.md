@@ -7,8 +7,7 @@ markdown
 
 - [Setup](#setup)
 - [Manuelles Starten](#manuelles-starten)
-- [Verwendung von PM2](#verwendung-von-pm2)
-- [Hinweise](#hinweise)
+- [Verwendung von PM2 (empfohlen)](#verwendung-von-pm2)
 
 ---
 
@@ -22,72 +21,58 @@ Lade das gesamte Projekt herunter oder klone es mit:
 git clone [Repository-URL]
 cd reminder-system
 ```
-2. Abhängigkeiten installieren
 
-Installiere die benötigten Pakete:
+Lade node.js herunter
+```bash
+sudo apt install nodejs
+```
 
-bash
-npm install
-
-3. .env-Dateien erstellen
+2. .env-Dateien erstellen
 
 Erstelle zwei .env-Dateien, eine für die Verwaltungsseite und eine für den Discord-Bot.
 a. .env für die Verwaltungsseite
 
 Gehe in den page-Unterordner und erstelle die .env-Datei mit folgendem Inhalt:
 
-plaintext
-# Beispiel für Umgebungsvariablen
+a. .env für die Page
+```
 PORT=3000
 DATABASE\_URI=mongodb://your\_database\_uri
-# Füge hier weitere benötigte Umgebungsvariablen hinzu
-
-b. .env für den Discord-Bot
-
+```
 Gehe in den Discord-Unterordner und erstelle die .env-Datei mit folgendem Inhalt:
-
-plaintext
-# Beispiel für Umgebungsvariablen
-DISCORD\_TOKEN=your\_discord\_bot\_token
-REMINDER\_CHANNEL\_ID=your\_channel\_id
-# Füge hier weitere benötigte Umgebungsvariablen hinzu
-
-Manuelles Starten
+b. .env für den Discord-Bot
+```
+PORT=3000
+DATABASE\_URI=mongodb://your\_database\_uri
+```
+### 2. Manuelles Starten
 a. Verwaltungsseite
-
 Wechsle in den Unterordner page und führe den folgenden Befehl aus:
-
-bash
-cd page
+```bash
 node index.js
+```
 
 b. Discord-Bot
-
-Wechsle in den Unterordner Discord und starte den Bot:
-
-bash
-cd ../Discord
+Wechsle in den Unterordner discord und starte den Bot:
+```bash
 node index.js
-
-Verwendung von PM2
+```
+### 2. Nutze PM2 zum start (empfohlen)
 
 PM2 ist ein mächtiges Tool zur Prozessverwaltung für Node.js-Anwendungen. Um PM2 zu verwenden, installiere es global:
-
-bash
+```bash
 npm install -g pm2
+```
 
 a. Verwaltungsseite mit PM2 starten
 
 Wechsle in den page-Unterordner und starte die Anwendung:
-
-bash
-cd page
+```bash
 pm2 start index.js --name "reminder-web"
-
+```
 b. Discord-Bot mit PM2 starten
 
 Gehe in den Discord-Unterordner und starte den Bot:
-
-bash
-cd ../Discord
+```bash
 pm2 start index.js --name "reminder-bot"
+```
