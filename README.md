@@ -1,4 +1,4 @@
-Shoutouts an simple css https://simplecss.org/ es iwrd für die verwaltungsseite genutzt
+Shoutouts an simple css https://simplecss.org/ es wird für die verwaltungsseite genutzt
 # Reminder System
 
 **Ein Node.js-Projekt mit einer Verwaltungsseite für Dienste und Discord Reminder-Nachrichten, das selbst gehostet werden kann.**
@@ -7,7 +7,7 @@ Shoutouts an simple css https://simplecss.org/ es iwrd für die verwaltungsseite
 
 - [Setup](#Setup)
 - [Manuelles Starten](#manuelles-starten)
-- [Verwendung von PM2 (empfohlen)](#nutze-pm2-zum-start-(empfohlen))
+- [Verwendung von PM2 (empfohlen)](#nutze-pm2-zum-start)
 
 ---
 
@@ -62,7 +62,7 @@ Wechsle in den Unterordner discord und starte den Bot:
 ```bash
 node index.js
 ```
-## Nutze PM2 zum start (empfohlen)
+## Nutze PM2 zum start
 
 PM2 ist ein mächtiges Tool zur Prozessverwaltung für Node.js-Anwendungen. Um PM2 zu verwenden, installiere es global:
 ```bash
