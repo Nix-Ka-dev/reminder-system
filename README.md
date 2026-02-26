@@ -18,7 +18,7 @@ Shoutouts an simple css https://simplecss.org/ es wird für die verwaltungsseite
 Lade das gesamte Projekt herunter oder klone es mit:
 
 ```bash
-git clone [Repository-URL]
+git clone https://github.com/Nix-Ka-dev/reminder-system.git
 cd reminder-system
 ```
 
