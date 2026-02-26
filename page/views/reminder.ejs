@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Reminder</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+    <h3>Reminder Verwaltung</h3>
+<details>
+    <summary>Reminder erstellen</summary>
+
+<form action="/setTimes" method="POST">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="content" placeholder="Nachricht" required>
+    <label>Uhrzeit: <input type="time" name="startTime" required></label>
+
+    <label>Personen auswählen (optional):</label>
+    <div>
+        <% persons.forEach(p => { %>
+            <label>
+                <input type="checkbox" name="personIds" value="<%= p._id %>">
+                <%= p.person %>
+            </label>
+        <% }) %>
+    </div>
+
+    <button type="submit">Speichern</button>
+</form>
+</details>
+<h3>Gespeicherte Reminder:</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Uhrzeit</th>
+            <th>Content</th>
+            <th>Statistik</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% reminders.forEach(reminder => { %>
+        <tr>
+            <td><%= reminder.name %></td>
+            <td>
+                <% if (reminder.times && reminder.times.length > 0) { %>
+                    <% reminder.times.forEach(t => { %>
+                        <div><%= String(t.hour).padStart(2,'0') %>:<%= String(t.minute).padStart(2,'0') %></div>
+                    <% }) %>
+                <% } else { %>
+                    <%= String(reminder.hour).padStart(2,'0') %>:<%= String(reminder.minute).padStart(2,'0') %>
+                <% } %>
+            </td>
+            <td><%= reminder.content %></td>
+            <td>
+                <% if (reminder.taskCounts && reminder.taskCounts.length > 0) { %>
+                    <% reminder.taskCounts.forEach(tc => { %>
+                        <% if (tc.personId) { %>
+                            <div>
+                                <strong><%= tc.personId.person %></strong>:
+                                <%= tc.count %>x
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% } else { %>
+                    -
+                <% } %>
+            </td>
+            <td>
+                <a href="/reminder/edit/<%= reminder._id %>" style="text-decoration: none;">
+                    <button type="button">Bearbeiten</button>
+                </a>
+                <form action="/reminder/delete/<%= reminder._id %>" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Sind Sie sicher?')">Löschen</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+</body>
+</html>

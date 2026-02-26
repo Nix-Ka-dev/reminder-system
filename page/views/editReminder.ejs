@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <title>Reminder Editor</title>
+</head>
+<body>
+     <%- include('partials/header') %>
+    <h2>Reminder bearbeiten</h2>
+    <form action="/reminder/update/<%= reminder._id %>" method="POST">
+
+    <input type="text" name="name" value="<%= reminder.name %>" required>
+
+    <textarea name="content"><%= reminder.content %></textarea>
+
+    <input type="time" name="startTime"
+        value="<%= String(reminder.hour).padStart(2,'0') %>:<%= String(reminder.minute).padStart(2,'0') %>">
+
+    <% persons.forEach(person => { 
+        const found = reminder.taskCounts.find(tc => 
+    tc.personId && tc.personId._id.toString() === person._id.toString()
+);
+    %>
+
+        <div>
+            <input type="checkbox" 
+                   name="personIds" 
+                   value="<%= person._id %>"
+                   <%= found ? "checked" : "" %>>
+
+            <%= person.person %>
+
+            <% if(found) { %>
+                <input type="number" 
+                       name="counts" 
+                       value="<%= found.count %>">
+            <% } %>
+        </div>
+
+    <% }) %>
+
+    <button type="submit">Speichern</button>
+    <a href="/reminder"><button type="button">Abbrechen</button></a>
+</form>
+</body>
+</html>

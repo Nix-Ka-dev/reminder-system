@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Person bearbeiten</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+<h3>Person bearbeiten</h3>
+
+<form action="/persons/update/<%= person._id %>" method="POST">
+    <label>
+        Name:
+        <input type="text" name="person" value="<%= person.person %>" required>
+    </label>
+
+    <label>
+        Discord ID:
+        <input type="text" name="discordId" value="<%= person.discordId %>">
+    </label>
+
+    <button type="submit">Speichern</button>
+    <a href="/persons"><button type="button">Abbrechen</button></a>
+</form>
+
+</body>
+</html>

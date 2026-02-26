@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Personen</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+    <%- include('partials/header') %>
+
+<h3>Personenverwaltung</h3>
+<details>
+    <summary>Neue Person hinzufügen</summary>
+    <a>für Rollen 'ROLE_' vor der ID eintragen</a>
+
+<form action="/persons" method="POST">
+    <label>
+        Name:
+        <input type="text" name="person" required>
+    </label>
+
+    <label>
+        Discord ID:
+        <input type="text" name="discordId">
+    </label>
+
+    <button type="submit">Speichern</button>
+</form>
+</details>
+
+<h3>Gespeicherte Personen</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Discord ID</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% persons.forEach(p => { %>
+        <tr>
+            <td><%= p.person %></td>
+            <td><%= p.discordId || '-' %></td>
+            <td>
+                <a href="/persons/edit/<%= p._id %>" style="text-decoration: none;">
+                    <button type="button">Bearbeiten</button>
+                </a>
+                <form action="/persons/delete/<%= p._id %>" method="POST" style="display:inline" onsubmit="return confirm('Wirklich löschen?');">
+                    <button type="submit">Löschen</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+</body>
+</html>

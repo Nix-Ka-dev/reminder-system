@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+<link rel="icon" type="image/png" href="/images/logo.png">
+<title>Login</title>
+<style>
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    flex: 1;
+    padding-right: 40px; /* Space for the eye icon */
+    height: 40px; /* Fixed height for better centering */
+    font-size: 16px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    vertical-align: middle; /* Adjusts vertical alignment */
+}
+
+</style>
+</head>
+<body>
+<h2>Login</h2>
+
+<% if (typeof error !== "undefined") { %>
+  <p style="color:red;"><%= error %></p>
+<% } %>
+
+<form action="/login" method="POST">
+    <div class="password-wrapper">
+        <input type="password" name="password" placeholder="Passwort" id="password" required>
+        <button type="button" class="toggle-password" aria-label="Passwort anzeigen">
+           <!-- Auge offen -->
+<svg id="eye-open" viewBox="0 0 32 32" width="24" height="24" style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" 
+        fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  <circle cx="16" cy="16" r="5" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+</svg>
+
+<!-- Auge geschlossen -->
+<svg id="eye-closed" viewBox="0 0 32 32" width="24" height="24">
+  <path d="M16,7C9.934,7,4.798,10.776,3,16c1.798,5.224,6.934,9,13,9s11.202-3.776,13-9C27.202,10.776,22.066,7,16,7z" fill="none" stroke="#fff" stroke-width="2"/>
+  <circle cx="16" cy="16" r="5" fill="none" stroke="#fff" stroke-width="2"/>
+  <line x1="3" y1="3" x2="29" y2="29" stroke="#fff" stroke-width="2"/>
+</svg>
+        </button>
+    </div>
+    <button type="submit">Login</button>
+</form>
+
+<script>
+    const toggleButton = document.querySelector('.toggle-password');
+const passwordInput = document.getElementById('password');
+const eyeOpen = document.getElementById('eye-open');
+const eyeClosed = document.getElementById('eye-closed');
+
+toggleButton.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeClosed.style.display = 'none';
+        eyeOpen.style.display = 'block';
+    } else {
+        passwordInput.type = 'password';
+        eyeClosed.style.display = 'block';
+        eyeOpen.style.display = 'none';
+    }
+});
+</script>
+</body>
+</html>
