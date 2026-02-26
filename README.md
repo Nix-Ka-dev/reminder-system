@@ -1,12 +1,13 @@
+Shoutouts an simple css https://simplecss.org/ es iwrd für die verwaltungsseite genutzt
 # Reminder System
 
 **Ein Node.js-Projekt mit einer Verwaltungsseite für Dienste und Discord Reminder-Nachrichten, das selbst gehostet werden kann.**
 
 ## Inhaltsverzeichnis
 
-- [Setup](#setup)
+- [Setup](#Setup)
 - [Manuelles Starten](#manuelles-starten)
-- [Verwendung von PM2 (empfohlen)](#verwendung-von-pm2)
+- [Verwendung von PM2 (empfohlen)](#nutze-pm2-zum-start-(empfohlen))
 
 ---
 
@@ -49,7 +50,7 @@ GUILD_ID=IHRE_SERVER_ID
 CLIENT_ID=IHRE_CLIENT_ID
 REMINDER_CHANNEL_ID=IHR_CHANNEL_FÜR_REMINDER
 ```
-### 2. Manuelles Starten
+## Manuelles Starten
 a. Verwaltungsseite
 Wechsle in den Unterordner page und führe den folgenden Befehl aus:
 ```bash
@@ -61,7 +62,7 @@ Wechsle in den Unterordner discord und starte den Bot:
 ```bash
 node index.js
 ```
-### 2. Nutze PM2 zum start (empfohlen)
+## Nutze PM2 zum start (empfohlen)
 
 PM2 ist ein mächtiges Tool zur Prozessverwaltung für Node.js-Anwendungen. Um PM2 zu verwenden, installiere es global:
 ```bash
